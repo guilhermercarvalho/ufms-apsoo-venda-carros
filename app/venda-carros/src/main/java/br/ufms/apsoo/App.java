@@ -13,8 +13,8 @@ import br.ufms.apsoo.controllers.CarroController;
 import br.ufms.apsoo.controllers.ClienteController;
 import br.ufms.apsoo.controllers.FuncionarioController;
 import br.ufms.apsoo.controllers.GerenteController;
-import br.ufms.apsoo.screens.Telas.Tela;
 import br.ufms.apsoo.util.ReadDump;
+import br.ufms.apsoo.views.Telas.Tela;
 
 public class App {
   public static void main(String[] args) {

@@ -24,7 +24,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import br.ufms.apsoo.model.Carro;
 import br.ufms.apsoo.model.Cliente;
 import br.ufms.apsoo.model.Funcionario;
-import br.ufms.apsoo.model.Orcamento;
+import br.ufms.apsoo.model.Venda;
 
 public class ComprovantePdf {
 
@@ -69,7 +69,7 @@ public class ComprovantePdf {
     document.add(preface);
   }
 
-  private static void text1(Document document, Orcamento v, Funcionario f, Cliente c) throws DocumentException {
+  private static void text1(Document document, Venda v, Funcionario f, Cliente c) throws DocumentException {
     Paragraph paragraph = new Paragraph();
 
     String text = String.format(
@@ -145,7 +145,7 @@ public class ComprovantePdf {
     return paragraph;
   }
 
-  private static void textVenda(Document document, Orcamento v) throws DocumentException {
+  private static void textVenda(Document document, Venda v) throws DocumentException {
     Paragraph paragraph = new Paragraph();
 
     document.add(new Paragraph("Informações da Venda"));
@@ -158,7 +158,7 @@ public class ComprovantePdf {
     document.add(paragraph);
   }
 
-  private static void createTableSummary(Document document, Orcamento v) throws BadElementException, DocumentException {
+  private static void createTableSummary(Document document, Venda v) throws BadElementException, DocumentException {
     PdfPTable table = new PdfPTable(8);
 
     table.setWidthPercentage(100);
@@ -243,7 +243,7 @@ public class ComprovantePdf {
     document.add(paragraph);
   }
 
-  private static void addContent(Document document, Orcamento venda, Funcionario funcionario, Cliente cliente, Carro carro)
+  private static void addContent(Document document, Venda venda, Funcionario funcionario, Cliente cliente, Carro carro)
       throws DocumentException {
     text1(document, venda, funcionario, cliente);
     textCarro(document, carro);
@@ -258,9 +258,9 @@ public class ComprovantePdf {
     }
   }
 
-  public static void generate(Orcamento venda, Funcionario funcionario, Cliente cliente, Carro carro) {
+  public static void generate(Venda venda, Funcionario funcionario, Cliente cliente, Carro carro) {
     Document document = new Document();
-    String path = "/workspace/comprovantes/";
+    String path = "/home/alexlinux/Documentos/git/ufms-apsoo-venda-carros/comprovantes/";
     String name = "venda-" + venda.getId();
     try {
       PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path + name));

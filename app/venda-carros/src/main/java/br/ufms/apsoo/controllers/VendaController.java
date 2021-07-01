@@ -11,6 +11,7 @@ import br.ufms.apsoo.model.Funcionario;
 import br.ufms.apsoo.model.Cliente;
 import br.ufms.apsoo.model.Venda;
 import br.ufms.apsoo.util.JpaUtil;
+import br.ufms.apsoo.util.ComprovantePdf;
 
 public class VendaController {
   private EntityManager em = JpaUtil.geEntityManagerFactory();
@@ -23,7 +24,7 @@ public class VendaController {
   public VendaController() {
   }
 
-  public Venda iniciarNovaVenda(double valorEntrada, double valorTotal, String formaPagamento, int numParcelas,
+  public Venda finalizarVenda(double valorEntrada, double valorTotal, String formaPagamento, int numParcelas,
       String cpfFuncionario, String cpfCliente, Integer codigoCarro) {
     Venda venda = new Venda(valorEntrada, valorTotal, formaPagamento, numParcelas);
 
@@ -49,5 +50,13 @@ public class VendaController {
     }
 
     return venda;
+  }
+
+  public void gerarComprovante(Venda venda) {
+    Funcionario funcionario = venda.getFuncionario();
+    Cliente cliente = venda.getCliente();
+    Carro carro = venda.getCarro();
+    ComprovantePdf.generate(venda, funcionario, cliente, carro);
+
   }
 }
